@@ -16,3 +16,13 @@ if(!function_exists('_limpar'))
 		return $var;
 	}
 }
+
+if(!function_exists('_echo'))
+{
+    function _echo($texto)
+	{
+		echo '<pre>';
+        var_dump($texto);
+		echo '</pre>';
+	}
+}
