@@ -11,7 +11,8 @@
     ],
     "autoload":{
         "files":[
-            "src/Util.php"
+            "src/Util.php",
+            "src/Whoops.php"
         ],
         "psr-4": {
             "GX4\\Email\\": "src/"
@@ -19,6 +20,7 @@
     },
     "require": {
         "php": ">=7.0",
-        "phpmailer/phpmailer": "^6.0"
+        "phpmailer/phpmailer": "^6.0",
+        "filp/whoops": "^2.14"
     }
 }
