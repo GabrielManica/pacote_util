@@ -1,0 +1,19 @@
+{
+    "name":"gabrielmanica/pacote_util",
+    "description":"Classe uteis PHP",
+    "type":"library",
+    "authors":[
+        {
+            "name":"Gabriel Mânica",
+            "email":"gabrielmanicaps@gmail.com"
+        }
+    ],
+    "autoload":{
+        "files":[
+            "src/Util.php"
+        ]
+    },
+    "require": {
+        "php": ">=7.0"
+    }
+}
