@@ -14,7 +14,7 @@
             "src/Util.php"
         ],
         "psr-4": {
-            "GX4\\Email": "src/"
+            "GX4\\Email\\": "src/"
         }
     },
     "require": {
