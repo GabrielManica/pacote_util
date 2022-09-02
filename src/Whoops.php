@@ -1,4 +1,5 @@
 <?php
+require "vendor/autoload.php";
 
 $ini = parse_ini_file('app/config/application.ini', true);
 
