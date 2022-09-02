@@ -2,7 +2,7 @@
 
 if(!function_exists('_limpar'))
 {
-    function limpar($var)
+    function _limpar($var)
 	{
 		$var = strtr(strtoupper($var), array(
 			"." => NULL,
