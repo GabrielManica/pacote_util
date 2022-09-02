@@ -2,6 +2,7 @@
     "name":"gabrielmanica/pacote_util",
     "description":"Classe uteis PHP",
     "type":"library",
+    "license": "GPL-3.0-or-later",
     "authors":[
         {
             "name":"Gabriel Mânica",
