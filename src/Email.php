@@ -1,6 +1,6 @@
 <?php
 
-namespace GX4\Email;
+namespace GX4;
 
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;

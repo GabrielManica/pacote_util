@@ -1,6 +1,6 @@
 <?php
 
-namespace GX4\EAN13Validator;
+namespace GX4;
 
 
 class EAN13Validator

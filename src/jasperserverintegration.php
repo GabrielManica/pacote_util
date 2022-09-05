@@ -1,6 +1,6 @@
 <?php
 
-namespace GX4\JasperServerIntegration;
+namespace GX4;
 
 class JasperServerIntegration {
     public $jasperUrl;
