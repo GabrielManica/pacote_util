@@ -1,6 +1,6 @@
 <?php
 
-namespace GX4;
+namespace GX4\S3;
 
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
@@ -20,7 +20,7 @@ class S3{
             'endpoint' => 'http://s3.us-east-1.amazonaws.com/',
             'credentials' => [
                 'key'    => $this->aws_key,
-                'secret' => $this->aws_secret_key,
+                'secret' => AWS_SECRET_KEY,
             ],
         ]);
     }
