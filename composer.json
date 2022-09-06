@@ -21,9 +21,9 @@
             "GX4\\Jasper\\": "src/",
             "GX4\\JasperServerIntegration\\": "src/",
             "GX4\\S3\\": "src/",
-            "GX4\\Trait\\ExportTrait\\": "src/",
-            "GX4\\Trait\\FormTrait\\": "src/",
-            "GX4\\Trait\\ListTrait\\": "src/"
+            "GX4\\Trait\\ExportTrait\\": "src/trait",
+            "GX4\\Trait\\FormTrait\\": "src/trait",
+            "GX4\\Trait\\ListTrait\\": "src/trait"
         }
     },
     "require": {
