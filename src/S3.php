@@ -20,7 +20,7 @@ class S3{
             'endpoint' => 'http://s3.us-east-1.amazonaws.com/',
             'credentials' => [
                 'key'    => $this->aws_key,
-                'secret' => AWS_SECRET_KEY,
+                'secret' => $this->aws_secret_key,
             ],
         ]);
     }
