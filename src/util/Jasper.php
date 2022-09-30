@@ -1,6 +1,6 @@
 <?php
 
-namespace GX4\Jasper;
+namespace GX4\Util;
 
 use PHPJasper\PHPJasper;
 use Adianti\Database\TConnection;

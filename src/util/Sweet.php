@@ -1,6 +1,6 @@
 <?php
 
-namespace GX4\Sweet;
+namespace GX4\Util;
 
 use Adianti\Control\TAction;
 use Adianti\Widget\Base\TScript;

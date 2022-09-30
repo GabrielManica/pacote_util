@@ -1,6 +1,6 @@
 <?php
 
-namespace GX4\Trait\FormTrait;
+namespace GX4\Trait;
 
 use Adianti\Control\TAction;
 use Adianti\Database\TTransaction;

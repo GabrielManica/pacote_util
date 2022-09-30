@@ -1,6 +1,6 @@
 <?php
 
-namespace GX4\Ghost;
+namespace GX4\Util;
 
 class Ghost {
     public static function convertPDFtoImage ($pdf, $image, $folder_pdf, $folder_image) {

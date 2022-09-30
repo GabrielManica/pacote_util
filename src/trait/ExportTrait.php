@@ -1,6 +1,6 @@
 <?php
 
-namespace GX4\Trait\ExportTrait;
+namespace GX4\Trait;
 
 use Adianti\Control\TPage;
 use Adianti\Control\TWindow;
