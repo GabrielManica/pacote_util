@@ -13,4 +13,11 @@ class TRecord extends \Adianti\Database\TRecord
             $object->$key = trim($value);
         }
     }
+
+    public function onAfterLoadCollection($object)
+    {
+        foreach ($object as $key => $value) {
+            $object->$key = trim($value);
+        }
+    }
 }
