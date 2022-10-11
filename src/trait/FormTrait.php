@@ -2,6 +2,7 @@
 
 namespace GX4\Trait;
 
+use Exception;
 use Adianti\Control\TAction;
 use Adianti\Database\TTransaction;
 use Adianti\Widget\Dialog\TMessage;
