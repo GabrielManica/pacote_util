@@ -33,8 +33,10 @@ trait FormTrait
 
     public function onDelete($param = null)
     {
-        if (isset($param['delete']) && $param['delete'] == 1) {
-            try {
+        try
+        {
+            if (isset($param['delete']) && $param['delete'] == 1)
+            {
                 TTransaction::open(self::$database);
                 $object = new self::$activeRecord($param['key']);
 
@@ -59,26 +61,32 @@ trait FormTrait
                 {
                     new TMessage('info', $mensagem_success, new TAction([$this, 'onShow']), 'Sucesso');
                 }
-            } catch (Exception $e) {
-                new TMessage('error', '<b style="font-size: 15px;">'.$mensagem_error.'</b><br><br><p style="font-size: 12px;"><b>Erro Banco de Dados </b>='.$e->getMessage().'</p>', null, 'Impossível excluir!' );
             }
-        } else {
-            $action = new TAction([$this, 'onDelete']);
-            $param['delete'] = 1;
-            $action->setParameters($param);
-
-            $mesage = 'Deseja excluir o registro?';
-
-            if($this->questionDelete)
+            else
             {
-                TTransaction::open(self::$database);
-                $object = new self::$activeRecord($param['key'], FALSE);
-                TTransaction::close();
+                $action = new TAction([$this, 'onDelete']);
+                $param['delete'] = 1;
+                $action->setParameters($param);
 
-                $mesage = $this->render($this->questionDelete, $object);
+                $mesage = 'Deseja excluir o registro?';
+
+                if($this->questionDelete)
+                {
+                    TTransaction::open(self::$database);
+                    $object = new self::$activeRecord($param['key'], FALSE);
+                    TTransaction::close();
+
+                    $mesage = $this->render($this->questionDelete, $object);
+                }
+
+                new TQuestion($mesage, $action);
             }
-
-            new TQuestion($mesage, $action);
+        }
+        catch (Exception $e)
+        {
+            $action = new TAction([$this, 'onEdit'], ['key'=>$param['key']]);
+            new TMessage('error', '<b style="font-size: 15px;">'.$mensagem_error.'</b><br><br><p style="font-size: 12px;"><b>Erro Banco de Dados </b>='.$e->getMessage().'</p>', $action, 'Impossível excluir!' );
+            TTransaction::rollback();
         }
     }
 
