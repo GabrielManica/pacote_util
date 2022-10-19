@@ -137,16 +137,16 @@ if(!function_exists('_mask_telefone_celular'))
 		$tam = strlen(preg_replace("/[^0-9]/", "", $numero));
 
 		if ($tam == 13) { // COM CÓDIGO DE ÁREA NACIONAL E DO PAIS e 9 dígitos
-			return "+".substr($numero,0,$tam-11)."(".substr($numero,$tam-11,2).")".substr($numero,$tam-9,5)."-".substr($numero,-4);
+			return "+".substr($numero,0,$tam-11)."(".substr($numero,$tam-11,2).") ".substr($numero,$tam-9,5)."-".substr($numero,-4);
 		}
 		if ($tam == 12) { // COM CÓDIGO DE ÁREA NACIONAL E DO PAIS
-			return "+".substr($numero,0,$tam-10)."(".substr($numero,$tam-10,2).")".substr($numero,$tam-8,4)."-".substr($numero,-4);
+			return "+".substr($numero,0,$tam-10)."(".substr($numero,$tam-10,2).") ".substr($numero,$tam-8,4)."-".substr($numero,-4);
 		}
 		if ($tam == 11) { // COM CÓDIGO DE ÁREA NACIONAL e 9 dígitos
-			return "(".substr($numero,0,2).")".substr($numero,2,5)."-".substr($numero,7,11);
+			return "(".substr($numero,0,2).") ".substr($numero,2,5)."-".substr($numero,7,11);
 		}
 		if ($tam == 10) { // COM CÓDIGO DE ÁREA NACIONAL
-			return "(".substr($numero,0,2).")".substr($numero,2,4)."-".substr($numero,6,10);
+			return "(".substr($numero,0,2).") ".substr($numero,2,4)."-".substr($numero,6,10);
 		}
 		if ($tam <= 9) { // SEM CÓDIGO DE ÁREA
 			return substr($numero,0,$tam-4)."-".substr($numero,-4);
