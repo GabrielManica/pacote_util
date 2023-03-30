@@ -2,6 +2,8 @@
 
 namespace GX4\Util;
 
+use Exception;
+
 class JasperServerIntegration {
     public $jasperUrl;
     public $reportPath;
