@@ -2,8 +2,6 @@
 
 namespace GX4\Util;
 
-use Adianti\Widget\Base\TScript;
-
 use Exception;
 
 class JasperServer {
@@ -104,7 +102,7 @@ class JasperServer {
         {
             $file = $this->PDF($folder, $file, $phpFile = 'download.php');
 
-            TScript::create('window.open("'.$phpFile.'?file='.$file['path'].'");');
+            \Adianti\Widget\Base\TScript::create('window.open("'.$phpFile.'?file='.$file['path'].'");');
         }
         catch(Exception $e)
         {
