@@ -31,7 +31,7 @@ class JasperServer {
 
     public function addParameters(array $parameters)
     {
-        $this->parameters = $parameters;
+        $this->parameters = array_merge($this->parameters, $parameters);
     }
 
     public function __get($property)
