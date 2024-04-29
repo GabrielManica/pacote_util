@@ -2,6 +2,8 @@
 
 namespace GX4\Util;
 
+use Adianti\Widget\Base\TScript;
+
 use Exception;
 
 class JasperServer {
@@ -96,7 +98,7 @@ class JasperServer {
             throw new Exception('Erro na geração do arquivos Jasper' . $e->getMessage());
         }
     }
-    public function ViewPDFAdianti($folder, $file)
+    public function viewPDFAdianti($folder, $file)
     {
         try
         {
