@@ -13,7 +13,7 @@ class JasperServer {
     private $status_code;
     private $parameters = [];
 
-    function __construct($jasperUrl, $reportPath, $user, $password) {
+    function __construct($jasperUrl, $user, $password, $reportPath = null) {
         $this->jasperUrl = $jasperUrl;
         $this->reportPath = $reportPath;
         $this->user = $user;
