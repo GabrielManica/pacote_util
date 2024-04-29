@@ -1,7 +1,13 @@
 <?php
 namespace Mycomponent\Widget\Datagrid;
 
+use Adianti\Core\AdiantiCoreTranslator;
+use Adianti\Widget\Base\TElement;
+use Adianti\Control\TAction;
 use Adianti\Registry\TSession;
+use Adianti\Widget\Container\TTable;
+
+use Exception;
 class TPageNavigation
 {
     private $limit;
