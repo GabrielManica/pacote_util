@@ -100,9 +100,9 @@ class JasperServer {
     {
         try
         {
-            $file = $this->PDF($folder, $file, $phpFile = 'download.php');
+            $file = $this->PDF($folder, $file);
 
-            \Adianti\Widget\Base\TScript::create('window.open("'.$phpFile.'?file='.$file['path'].'");');
+            \Adianti\Control\TPage::openFile($file['path']);
         }
         catch(Exception $e)
         {
