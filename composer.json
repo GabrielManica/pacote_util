@@ -17,6 +17,7 @@
         "psr-4": {
             "GX4\\Util\\": "src/util",
             "GX4\\Trait\\": "src/trait",
+            "GX4\\Service\\": "src/service",
             "Mycomponent\\Control\\": "mycomponent/control",
             "Mycomponent\\Database\\": "mycomponent/database",
             "Mycomponent\\Widget\\Datagrid\\": "mycomponent/widget/datagrid"
