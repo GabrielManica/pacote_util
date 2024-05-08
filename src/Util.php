@@ -382,3 +382,81 @@ if(!function_exists('_on_delete_file'))
         }
     }
 }
+
+// dump
+function d(...$args)
+{
+    $bt = debug_backtrace();
+    while(count($bt) and strpos($bt[0]['file'], __FILE__) !== false) array_shift($bt);
+    $title = ['d' => 'DUMP', 'dd' => 'DUMP AND DIE'][$bt[0]['function']] . " {$bt[0]['file']}:{$bt[0]['line']}";
+    ob_start();
+    foreach($args as $arg) var_dump($arg);
+    $win = TWindow::create($title, 0.9999, 0.9999);
+    $win->add(preg_replace(['/###:\d+:/', '/<small><\/small>\s*/'], '', str_replace(__FILE__, '###', ob_get_clean())));
+    $win->show();
+}
+
+// dump e die
+function dd(...$args) {
+    d(...$args);
+    die();
+}
+
+// print
+function p(...$args)
+{
+    $bt = debug_backtrace();
+    while(count($bt) and strpos($bt[0]['file'], __FILE__) !== false) array_shift($bt);
+    $title = ['p' => 'PRINT', 'pp' => 'PRINT AND PAUSE'][$bt[0]['function']] . " {$bt[0]['file']}:{$bt[0]['line']}";
+    ob_start();
+    foreach($args as $arg) echo '<pre>'.print_r(key_pad($arg), 1).'</pre>';
+    $win = TWindow::create($title, 0.9999, 0.9999);
+    $win->add(ob_get_clean());
+    $win->show();
+}
+
+// print e pause
+function pp(...$args) {
+    p(...$args);
+    die();
+}
+
+// alinhar chaves de array à direita
+function key_pad($arg)
+{
+    if (is_string($arg) and mb_strpos($arg, '@') === 0) return '<strong>'.ltrim($arg,'@').'</strong>';
+    else if (is_array($arg)) {
+        $max = 0;
+        $pad = [];
+        foreach($arg as $i => $v) $max = max(mb_strlen($i), $max);
+        foreach($arg as $i => $v) $pad[mb_str_pad($i, $max, " ", STR_PAD_LEFT)] = key_pad($v);
+        return $pad;
+    }
+    return $arg;
+}
+
+// PHP < 8.3.0
+if (!function_exists('mb_str_pad')) {
+    function mb_str_pad(string $str, int $len, string $pad, int $align = \STR_PAD_RIGHT): string
+    {
+       $strLen = \mb_strlen($str);
+       if ($strLen >= $len) return $str;
+       $diff = $len - $strLen;
+       $padding = \mb_substr(\str_repeat($pad, $diff), 0, $diff);
+       switch ($align) {
+          case \STR_PAD_BOTH:
+             $diffHalf = (int)($diff/2 + 0.5);
+             $padding = \str_repeat($pad, $diffHalf);
+             $result = "{$padding}{$str}{$padding}";
+             break;
+          case \STR_PAD_LEFT:
+             $result = "{$padding}{$str}";
+             break;
+          case \STR_PAD_RIGHT:
+          default:
+             $result = "{$str}{$padding}";
+             break;
+       }
+       return \mb_substr($result, 0, $len);
+    }
+}
