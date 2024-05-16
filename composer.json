@@ -12,6 +12,7 @@
     "autoload":{
         "files":[
             "src/Util.php",
+            "src/Libraries.php",
             "src/Whoops.php"
         ],
         "psr-4": {
@@ -20,7 +21,8 @@
             "GX4\\Service\\": "src/service",
             "Mycomponent\\Control\\": "mycomponent/control",
             "Mycomponent\\Database\\": "mycomponent/database",
-            "Mycomponent\\Widget\\Datagrid\\": "mycomponent/widget/datagrid"
+            "Mycomponent\\Widget\\Datagrid\\": "mycomponent/widget/datagrid",
+            "Mycomponent\\Widget\\Form\\": "mycomponent/widget/form"
         }
     },
     "require": {
