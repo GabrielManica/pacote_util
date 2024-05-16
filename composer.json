@@ -12,7 +12,6 @@
     "autoload":{
         "files":[
             "src/Util.php",
-            "src/Libraries.php",
             "src/Whoops.php"
         ],
         "psr-4": {
