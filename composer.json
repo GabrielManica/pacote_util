@@ -22,7 +22,8 @@
             "Mycomponent\\Control\\": "mycomponent/control",
             "Mycomponent\\Database\\": "mycomponent/database",
             "Mycomponent\\Widget\\Datagrid\\": "mycomponent/widget/datagrid",
-            "Mycomponent\\Widget\\Form\\": "mycomponent/widget/form"
+            "Mycomponent\\Widget\\Form\\": "mycomponent/widget/form",
+            "Mycomponent\\Widget\\Dialog\\": "mycomponent/widget/dialog"
         }
     },
     "require": {
