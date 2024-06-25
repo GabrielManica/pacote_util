@@ -1,11 +1,11 @@
 <?php
 
 namespace GX4\Exception;
-class CustomException extends PDOException
+class CustomException extends \PDOException
 {
     protected $detailedMessage;
 
-    public function __construct(Exception $exception = null)
+    public function __construct(\Exception $exception = null)
     {
         // Extrair a mensagem específica do erro PostgreSQL
         $this->detailedMessage = $this->extractDetailedMessage($exception->getMessage());
