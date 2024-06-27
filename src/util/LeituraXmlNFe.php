@@ -1,4 +1,6 @@
 <?php
+
+namespace GX4\Util;
 class LeituraXmlNFe
 {
     protected $chave;
@@ -19,7 +21,7 @@ class LeituraXmlNFe
     public function tratadt($var)
     {
         if ($var != '') {
-            $dt = new DateTime($var);
+            $dt = new \DateTime($var);
             $var = $dt->format('Y-m-d H:i:s');
         }
         return $var;
@@ -49,7 +51,7 @@ class LeituraXmlNFe
     public function getProtocolo()
     {
         $prot = $this->xml->protNFe->infProt;
-        $std = new stdClass;
+        $std = new \stdClass;
         $std->protocolo_autorizacao = trim($prot->nProt);
         $std->dt_autorizacao = $this->tratadt($prot->dhRecbto);
         $std->cd_status = trim($prot->cStat);
@@ -58,7 +60,7 @@ class LeituraXmlNFe
     public function getIde()
     {
         $ide = $this->xml->NFe->infNFe->ide;
-        $std = new stdClass;
+        $std = new \stdClass;
         $std->versao = $this->versao;
         $std->ide_natOp = (isset($ide->natOp)) ? trim($ide->natOp) : NULL;
         $std->ide_mod = (isset($ide->mod)) ? trim($ide->mod) : NULL;
@@ -88,7 +90,7 @@ class LeituraXmlNFe
     public function getEmitente()
     {
         $emit = $this->xml->NFe->infNFe->emit;
-        $std = new stdClass;
+        $std = new \stdClass;
         $std->emit_cpf = (isset($emit->CPF)) ? trim($emit->CPF) : NULL;
         $std->emit_cnpj = (isset($emit->CNPJ)) ? trim($emit->CNPJ) : NULL;
         $std->emit_xNome = (isset($emit->xNome)) ? trim($emit->xNome) : NULL;
@@ -112,7 +114,7 @@ class LeituraXmlNFe
     public function getDestinatario()
     {
         $dest = $this->xml->NFe->infNFe->dest;
-        $std = new stdClass;
+        $std = new \stdClass;
         $std->dest_idEstrangeiro = (isset($dest->idEstrangeiro)) ? trim($dest->idEstrangeiro) : NULL;
         $std->dest_CPF = (isset($dest->CPF)) ? trim($dest->CPF) : NULL;
         $std->dest_CNPJ = (isset($dest->CNPJ)) ? trim($dest->CNPJ) : NULL;
@@ -149,7 +151,7 @@ class LeituraXmlNFe
     public function getTransporte()
     {
         $transp = $this->xml->NFe->infNFe->transp;
-        $std = new stdClass;
+        $std = new \stdClass;
         $std->modFrete = trim($transp->modFrete);
         $std->transp_CNPJ = (isset($transp->transporta->CNPJ)) ? trim($transp->transporta->CNPJ) : NULL;
         $std->transp_CPF = (isset($transp->transporta->CPF)) ? trim($transp->transporta->CPF) : NULL;
@@ -170,7 +172,7 @@ class LeituraXmlNFe
     }
     public function ICMS($var)
     {
-        $std = new stdClass;
+        $std = new \stdClass;
         if (isset($var->ICMS->ICMS00)) {
             $l = $var->ICMS->ICMS00;
             $std->CST  = trim($l->CST);
@@ -448,7 +450,7 @@ class LeituraXmlNFe
     }
     public function IPI($var)
     {
-        $std = new stdClass;
+        $std = new \stdClass;
         if (isset($var->IPI->IPITrib)) {
             $l = $var->IPI->IPITrib;
             $std->cEnq = (isset($l->cEnq)) ? trim($l->cEnq) : 0;
@@ -465,7 +467,7 @@ class LeituraXmlNFe
     }
     public function II($var)
     {
-        $std = new stdClass;
+        $std = new \stdClass;
         if (isset($var->II)) {
             $l = $var->II;
             $std->vBC = (isset($l->vBC)) ? trim($l->vBC) : 0;
@@ -477,7 +479,7 @@ class LeituraXmlNFe
     }
     public function PIS($var)
     {
-        $std = new stdClass;
+        $std = new \stdClass;
         if (isset($var->PIS->PISAliq)) {
             $l = $var->PIS->PISAliq;
             $std->CST = (isset($l->CST)) ? trim($l->CST) : 0;
@@ -509,7 +511,7 @@ class LeituraXmlNFe
     }
     public function COFINS($var)
     {
-        $std = new stdClass;
+        $std = new \stdClass;
         if (isset($var->COFINS->COFINSAliq)) {
             $l = $var->COFINS->COFINSAliq;
             $std->CST = (isset($l->CST)) ? trim($l->CST) : 0;
@@ -551,7 +553,7 @@ class LeituraXmlNFe
             $PIS = $this->PIS($l->imposto);
             $COFINS = $this->COFINS($l->imposto);
 
-            $std = new stdClass;
+            $std = new \stdClass;
             $std->nItem = $l->attributes()['nItem'];
             $std->cProd = trim($l->prod->cProd);
             $std->cEAN = trim($l->prod->cEAN);
@@ -665,7 +667,7 @@ class LeituraXmlNFe
             $parcelas = [];
 
             foreach ($par->dup as $p) {
-                $std = new stdClass;
+                $std = new \stdClass;
                 $std->fatura = $fatura;
                 $std->parcela = trim($p->nDup);
                 $std->dt_vencimento = trim($p->dVenc);
@@ -678,7 +680,7 @@ class LeituraXmlNFe
     public function getObs()
     {
         $obs = $this->xml->NFe->infNFe->infAdic;
-        $std = new stdClass;
+        $std = new \stdClass;
         $std->infAdFisco = (isset($obs->infAdFisco)) ? (trim($obs->infAdFisco)) : NULL;
         $std->infCpl = (isset($obs->infCpl)) ? (trim($obs->infCpl)) : NULL;
         return $std;

@@ -1,5 +1,7 @@
 <?php
 
+namespace GX4\Util;
+
 use NFePHP\DA\Legacy\Pdf;
 
 class CustomPdf extends Pdf

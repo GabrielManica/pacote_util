@@ -27,6 +27,19 @@ use Exception;
  */
 class TFile extends \Adianti\Widget\Form\TFile
 {
+    protected $download = true;
+    protected $icon = 'fa-download';
+
+    public function setDisplayMode($mode, $download = true)
+    {
+        $this->displayMode = $mode;
+        $this->download    = $download;
+    }
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+    }
+
     public function show()
     {
         // define the tag properties
@@ -63,7 +76,7 @@ class TFile extends \Adianti\Widget\Form\TFile
 
         if (isset($this->completeAction) || isset($this->errorAction))
         {
-            if (!TForm::getFormByName($this->formName) instanceof TForm)
+            if (!\TForm::getFormByName($this->formName) instanceof \TForm)
             {
                 throw new Exception(AdiantiCoreTranslator::translate('You must pass the ^1 (^2) as a parameter to ^3', __CLASS__, $this->name, 'TForm::setFields()') );
             }
@@ -100,11 +113,14 @@ class TFile extends \Adianti\Widget\Form\TFile
 
         if ($this->displayMode == 'file' AND file_exists($this->value))
         {
-            $icon = TElement::tag('i', null, ['class' => 'fa fa-download']);
+            $icon = TElement::tag('i', null, ['class' => "fa {$this->icon}"]);
             $link = new TElement('a');
             $link->{'id'}     = 'view_'.$this->name;
-            $link->{'href'}   = 'download.php?file='.$this->value;
-            $link->{'target'} = 'download';
+            if($this->download)
+            {
+                $link->{'href'}   = 'download.php?file='.$this->value;
+                $link->{'target'} = 'download';
+            }
             $link->{'style'}  = 'padding: 4px; display: block';
             $link->add($icon);
             $teste = explode('/',$this->value);

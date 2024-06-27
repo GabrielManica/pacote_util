@@ -1,5 +1,7 @@
 <?php
 
+namespace GX4\Util;
+
 use NFePHP\DA\NFe\Danfe;
 use NFePHP\DA\Legacy\FilesFolders;
 
