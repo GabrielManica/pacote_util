@@ -8,6 +8,7 @@ use Aws\S3\S3Client;
 class S3{
     protected $aws_key;
     protected $aws_secret_key;
+    protected $s3Client;
 
     public function __construct($aws_key, $aws_secret_key, $endpoint = 'http://s3.us-east-1.amazonaws.com/', $region = 'us-east-1')
     {
