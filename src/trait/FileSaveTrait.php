@@ -10,9 +10,17 @@ trait FileSaveTrait
     {
         $dados_file = json_decode(urldecode($data->$input_name));
 
+        if(is_null($dados_file))
+        {
+            $dados_file = new stdClass();
+            $dados_file->fileName = $data->$input_name;
+        }
+
         if (isset($dados_file->fileName))
         {
-            $pk = $object->getPrimaryKey();
+            $oldObject = new (get_class($object))($object->{$object::PRIMARYKEY});
+
+            $pk = $object::PRIMARYKEY;
 
             $target_path.= '/' . $object->$pk;
             $target_path = str_replace('//', '/', $target_path);
@@ -21,22 +29,24 @@ trait FileSaveTrait
             $target_file = strpos($dados_file->fileName, $target_path) === FALSE ? $target_path . '/' . $dados_file->fileName : $dados_file->fileName;
             $target_file = str_replace('tmp/', '', $target_file);
 
-            $object             = new stdClass();
-            $object->folderPath = $target_path;
-            $object->pathTmp    = $source_file;
-            $object->path       = $target_file;
+            $objectNew             = new stdClass();
+            $objectNew->folderPath = $target_path;
+            $objectNew->pathTmp    = "tmp/{$source_file}";
+            $objectNew->path       = $target_file;
 
             if (!empty($dados_file->delFile))
             {
-                if (is_file(urldecode($dados_file->delFile)))
-                {
-                    $delete_file = $target_path . '/' . urldecode($dados_file->delFile);
-                    $target_file = str_replace('tmp/', '', $delete_file);
-                    $object->delFile = $target_file;
-                }
+                $delete_file = $target_path . '/' . urldecode($dados_file->delFile);
+                $target_file = str_replace('tmp/', '', $delete_file);
+                $objectNew->delFile = $target_file;
             }
 
-            return $object;
+            if (!is_null($oldObject->$input_name) && $oldObject->$input_name != $objectNew->path)
+            {
+                $objectNew->delFile = $oldObject->$input_name;
+            }
+
+            return $objectNew;
         }
     }
 }
