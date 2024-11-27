@@ -19,6 +19,7 @@ class S3{
             'region' => $region,
             'version' => 'latest',
             'endpoint' => $endpoint,
+            'use_path_style_endpoint' => true,
             'credentials' => [
                 'key'    => $this->aws_key,
                 'secret' => $this->aws_secret_key,
