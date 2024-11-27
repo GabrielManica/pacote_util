@@ -9,15 +9,15 @@ class S3{
     protected $aws_key;
     protected $aws_secret_key;
 
-    public function __construct($aws_key, $aws_secret_key, $id = NULL, $callObjectLoad = TRUE)
+    public function __construct($aws_key, $aws_secret_key, $endpoint = 'http://s3.us-east-1.amazonaws.com/', $region = 'us-east-1')
     {
         $this->aws_key        = $aws_key;
         $this->aws_secret_key = $aws_secret_key;
 
         $this->s3Client = new S3Client([
-            'region' => 'us-east-1',
-            'version' => '2006-03-01',
-            'endpoint' => 'http://s3.us-east-1.amazonaws.com/',
+            'region' => $region,
+            'version' => 'latest',
+            'endpoint' => $endpoint,
             'credentials' => [
                 'key'    => $this->aws_key,
                 'secret' => $this->aws_secret_key,

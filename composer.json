@@ -29,6 +29,7 @@
     "require": {
         "php": ">=7.0",
         "phpmailer/phpmailer": "^6.0",
-        "filp/whoops": "^2.14"
+        "filp/whoops": "^2.14",
+        "aws/aws-sdk-php": "^3.330"
     }
 }
