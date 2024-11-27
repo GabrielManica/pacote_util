@@ -2,6 +2,8 @@
 
 namespace GX4\Trait;
 
+use stdClass;
+
 trait FileSaveTrait
 {
     public function saveFile($object, $data, $input_name, $target_path)
@@ -19,7 +21,12 @@ trait FileSaveTrait
             $target_file = strpos($dados_file->fileName, $target_path) === FALSE ? $target_path . '/' . $dados_file->fileName : $dados_file->fileName;
             $target_file = str_replace('tmp/', '', $target_file);
 
-            return $target_file;
+            $object             = new stdClass();
+            $object->folderPath = $target_path;
+            $object->pathTmp    = $source_file;
+            $object->path       = $target_file;
+
+            return $object;
         }
     }
 }
