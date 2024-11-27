@@ -26,6 +26,16 @@ trait FileSaveTrait
             $object->pathTmp    = $source_file;
             $object->path       = $target_file;
 
+            if (!empty($dados_file->delFile))
+            {
+                if (is_file(urldecode($dados_file->delFile)))
+                {
+                    $delete_file = $target_path . '/' . urldecode($dados_file->delFile);
+                    $target_file = str_replace('tmp/', '', $delete_file);
+                    $object->delFile = $target_file;
+                }
+            }
+
             return $object;
         }
     }
