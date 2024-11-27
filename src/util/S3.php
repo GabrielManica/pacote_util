@@ -10,7 +10,7 @@ class S3{
     protected $aws_secret_key;
     protected $s3Client;
 
-    public function __construct($aws_key, $aws_secret_key, $endpoint = 'http://s3.us-east-1.amazonaws.com/', $region = 'us-east-1')
+    public function __construct($aws_key, $aws_secret_key, $endpoint = 'http://s3.us-east-1.amazonaws.com/', $path_style = true, $region = 'us-east-1')
     {
         $this->aws_key        = $aws_key;
         $this->aws_secret_key = $aws_secret_key;
@@ -19,7 +19,7 @@ class S3{
             'region' => $region,
             'version' => 'latest',
             'endpoint' => $endpoint,
-            'use_path_style_endpoint' => true,
+            'use_path_style_endpoint' => $path_style,
             'credentials' => [
                 'key'    => $this->aws_key,
                 'secret' => $this->aws_secret_key,
