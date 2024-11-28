@@ -30,15 +30,21 @@ class LeituraXmlNFe
     {
         if ($tipo  == 'arquivo') {
             if (!file_exists($arquivo)) {
-                throw new Exception("Arquivo não encontrado!");
+                throw new \Exception("Arquivo não encontrado!");
             }
             $this->xml = simplexml_load_file($arquivo);
-        } else {
+        } else if ($tipo  == 'url') {
+            $fileInfo = pathinfo($arquivo);
+            $arquivo = rawurlencode($fileInfo['basename']);
+            $arquivo = @file_get_contents($fileInfo['dirname'].'/'.$arquivo);
+            $this->xml = simplexml_load_string($arquivo);
+        }
+        else {
             $this->xml = simplexml_load_string($arquivo);
         }
         //$this->debug($this->xml);
         if (empty($this->xml->protNFe->infProt->nProt)) {
-            throw new Exception("Arquivo sem dados de autorização. " . $arquivo);
+            throw new \Exception("Arquivo sem dados de autorização. " . $arquivo);
             return false;
         }
         //$chave = $this->xml->NFe->infNFe->attributes->Id;

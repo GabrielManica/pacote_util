@@ -111,14 +111,20 @@ class TFile extends \Adianti\Widget\Form\TFile
             $div->add( $this->tag );
         }
 
-        if ($this->displayMode == 'file' AND file_exists($this->value))
+        if(!is_null($this->value) && isset(json_decode(urldecode($this->value))->fileName) && filter_var(json_decode(urldecode($this->value))->fileName, FILTER_VALIDATE_URL))
         {
+            $this->value = json_decode(urldecode($this->value))->fileName;
+        }
+
+        if ($this->displayMode == 'file' AND (file_exists($this->value) || filter_var(($this->value), FILTER_VALIDATE_URL)))
+        {
+
             $icon = TElement::tag('i', null, ['class' => "fa {$this->icon}"]);
             $link = new TElement('a');
             $link->{'id'}     = 'view_'.$this->name;
             if($this->download)
             {
-                $link->{'href'}   = 'download.php?file='.$this->value;
+                $link->{'href'}   = (filter_var(($this->value), FILTER_VALIDATE_URL)) ? $this->value :'download.php?file='.$this->value;
                 $link->{'target'} = 'download';
             }
             $link->{'style'}  = 'padding: 4px; display: block';
